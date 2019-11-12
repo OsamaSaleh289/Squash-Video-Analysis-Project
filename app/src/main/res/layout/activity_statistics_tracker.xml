@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.osama.videoanalysis.statistics_tracker">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/totalShots"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="Total Shots"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/totalShotsValue"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/totalRallies"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="Total Rallies"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/totalRalliesValue"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+
+
+
+
+        </TableRow>
+
+
+    <!-- Row 1 with single column -->
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/avgGameLength"
+            android:layout_weight="0"
+            android:background="#000000"
+            android:gravity="center"
+            android:padding="20dip"
+            android:text="Avg Game Length"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/avgGameLengthValue"
+            android:layout_weight="0"
+            android:background="#000000"
+            android:gravity="center"
+            android:padding="20dip"
+            android:text="0 min"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+
+
+
+
+    </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/avgRallyLength"
+                android:layout_weight="0"
+                android:background="@android:color/holo_green_light"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="Avg Rally Length"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/avgRallyLengthValue"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="0 min"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/volleyOpps"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="Volleys"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/volleyOppsText"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="0/0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/avgShotPerSecond"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="Shots per Second"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/avgShotSecValue"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="0.0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/winnersErrosRatio"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="Winners : Errors"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/winnersErrorsRatioValue"
+                android:layout_weight="0"
+                android:background="#000000"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="100%"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+
+
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="fill_parent"
+        android:layout_height="108dp"
+        android:layout_marginTop="456dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="returnBack"
+        android:text="Return to Main Screen"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</android.support.constraint.ConstraintLayout>

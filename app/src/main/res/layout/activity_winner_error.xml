@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.osama.videoanalysis.winner_error">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="102dp"
+            android:background="?attr/colorAccent"
+            android:onClick="onConfirmation"
+            android:text="Confirm"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="434dp" />
+
+        <Button
+            android:id="@+id/straight"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/confirm"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="40dp"
+            android:onClick="onChoice"
+            android:text="Straight"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="332dp" />
+
+        <Button
+            android:id="@+id/boast"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:onClick="onChoice"
+            android:tag="boast"
+            android:text="Boast"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="259dp" />
+
+        <Button
+            android:id="@+id/kill"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/boast"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="16dp"
+            android:onClick="onChoice"
+            android:tag="kill"
+            android:text="Kill"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="185dp" />
+
+        <Button
+            android:id="@+id/lob"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/kill"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="23dp"
+            android:onClick="onChoice"
+            android:tag="lob"
+            android:text="Lob"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="57dp" />
+
+        <Button
+            android:id="@+id/drop"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/lob"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="14dp"
+            android:onClick="onChoice"
+            android:text="Drop"
+            android:tag="drop"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="121dp" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
