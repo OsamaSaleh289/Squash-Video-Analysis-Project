@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.osama.videoanalysis.shot_middle_details">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="551dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/winnerShot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="47dp"
+            android:background="@android:color/holo_orange_dark"
+            android:onClick="onTypeSelect"
+            android:tag="winnerShot"
+            android:text="Winner" />
+
+        <Button
+            android:id="@+id/errorShot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/winnerShot"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/holo_orange_dark"
+            android:onClick="onTypeSelect"
+            android:tag="errorShot"
+            android:text="Error" />
+
+        <Button
+            android:id="@+id/volleyShot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/errorShot"
+            android:layout_marginTop="11dp"
+            android:background="@android:color/holo_orange_dark"
+            android:onClick="onTypeSelect"
+            android:tag="volleyShot"
+            android:text="Volley" />
+
+        <Button
+            android:id="@+id/confirm2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="77dp"
+            android:alpha="0"
+            android:background="@android:color/holo_green_light"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="onConfirmClick"
+            android:tag="confirm2"
+            android:text="Confirm" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/holo_purple"
+            android:onClick="onTypeSelect"
+            android:tag="cancel"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/floorShot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/volleyShot"
+            android:layout_marginTop="14dp"
+            android:background="@android:color/holo_orange_dark"
+            android:onClick="onTypeSelect"
+            android:tag="floorShot"
+            android:text="Floor" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="Middle Shot"
+            android:textSize="30sp"
+            android:textStyle="bold|italic" />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

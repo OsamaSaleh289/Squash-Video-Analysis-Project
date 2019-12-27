@@ -1,12 +1,9 @@
 package com.example.osama.videoanalysis;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
-import java.io.Serializable;
 
 public class winner_error extends AppCompatActivity {
     MainActivity.Shot currWinnerError;

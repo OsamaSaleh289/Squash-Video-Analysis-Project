@@ -1,12 +1,11 @@
 package com.example.osama.videoanalysis;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -67,11 +66,23 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
     }
 
+    public void endActivity(){
+
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("currShot", (Serializable) currShot);
+        bundle.putSerializable("currRally", (Serializable) currRally);
+        intent.putExtra("Updated information", bundle);
+        setResult(RESULT_OK, intent);
+        finish();
+
+    }
+
     public void onConfirmClick(View view){
         //We need to only allow confirm click if we have a shot value
         if (shotType != null) {
 
-            if (shotType.getTag().toString().equals("winner")) {
+            /*if (shotType.getTag().toString().equals("winner")) {
                 //Change view to get more detailed info about shots
                 MainActivity.Winner currShot = new MainActivity.Winner();
 
@@ -95,15 +106,13 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
 
 
-            } else{
+            } else{*/
                 currShot.setShotType(shotType.getText().toString());
                 currRally.addShot(currShot);
-                //Toast.makeText(getApplicationContext(), String.valueOf(currRally.getRallyLength()), Toast.LENGTH_SHORT).show();
-                setResult(RESULT_OK, intent);
-                Log.i("id 2", String.valueOf(currRally.id));
-                finish();
+                endActivity();
 
-            }
+
+            //}
 
 
         }
@@ -118,8 +127,9 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
         shotType = (Button) findViewById(R.id.winner);
 
         intent = getIntent();
-        currShot = (MainActivity.Shot)  intent.getSerializableExtra("shotObject");
-        currRally = (MainActivity.Rally) intent.getSerializableExtra("rallyObject");
+        Bundle bundle = intent.getBundleExtra("information");
+        currShot = (MainActivity.Shot)  bundle.get("shotObject");
+        currRally = (MainActivity.Rally) bundle.get("rallyObject");
         if (currShot.isServe()){
             Button serveButton = (Button) findViewById(R.id.let_stroke);
             serveButton.setText("Volley Return");
@@ -130,7 +140,7 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         currRally.addShot(currShot);
@@ -139,5 +149,5 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
         finish();
 
 
-    }
+    }*/
 }

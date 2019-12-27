@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.osama.videoanalysis">
 
     <application
@@ -18,8 +19,8 @@
         </activity>
         <activity android:name=".ShotDetails" />
         <activity android:name=".statistics_tracker" />
-        <activity android:name=".detailed_winners" />
-        <activity android:name=".winner_error"></activity>
+        <activity android:name=".winner_error" />
+        <activity android:name=".shot_middle"></activity>
     </application>
 
 </manifest>

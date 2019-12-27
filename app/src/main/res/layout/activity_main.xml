@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/servebox"
-        android:onClick="onShotMiddle"
+        android:onClick="onShot"
         android:tag="midRight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.727"
@@ -27,7 +27,7 @@
         android:layout_width="187dp"
         android:layout_height="126dp"
         android:background="@drawable/servebox"
-        android:onClick="onShotMiddle"
+        android:onClick="onShot"
         android:tag="midLeft"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frontLeft" />
@@ -51,7 +51,7 @@
         android:layout_height="234dp"
         android:layout_marginEnd="52dp"
         android:background="@drawable/backandfront"
-        android:onClick="onShotFront"
+        android:onClick="onShot"
         android:tag="frontLeft"
         app:layout_constraintEnd_toEndOf="@+id/rallyButton"
         tools:layout_editor_absoluteY="0dp" />
@@ -62,7 +62,7 @@
         android:layout_height="234dp"
         android:layout_marginStart="48dp"
         android:background="@drawable/backandfront"
-        android:onClick="onShotFront"
+        android:onClick="onShot"
         android:tag="frontRight"
         app:layout_constraintStart_toStartOf="@+id/rallyButton"
         tools:layout_editor_absoluteY="0dp" />
@@ -73,6 +73,7 @@
         android:layout_height="243dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/backandfront"
+        android:onClick="onShot"
         android:tag="backLeft"
         app:layout_constraintTop_toTopOf="@+id/courtLine"
         tools:layout_editor_absoluteX="0dp" />
@@ -83,6 +84,7 @@
         android:layout_height="254dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/backandfront"
+        android:onClick="onShot"
         android:tag="backRight"
         app:layout_constraintStart_toStartOf="@+id/courtLine"
         app:layout_constraintTop_toTopOf="@+id/courtLine" />
@@ -139,4 +141,4 @@
         tools:layout_editor_absoluteY="156dp" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,12 @@
 package com.example.osama.videoanalysis;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import static java.lang.Integer.parseInt;
 
@@ -15,6 +14,11 @@ public class statistics_tracker extends AppCompatActivity {
     Intent intent;
     Button backButton;
     int rallyLength;
+    int totalRallies;
+    float avgRallyLength;
+    float shotsPerSecond;
+    float winnerError;
+    public int testValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +26,31 @@ public class statistics_tracker extends AppCompatActivity {
         setContentView(R.layout.activity_statistics_tracker);
 
         backButton = (Button) findViewById(R.id.backButton);
-        TextView totalShotsView = (TextView) findViewById(R.id.totalShotsValue);
+        TextView totalShotsValue = (TextView) findViewById(R.id.totalShotsValue);
+        TextView totalRalliesValue = (TextView) findViewById(R.id.totalRalliesValue);
+        TextView avgGameLength = (TextView) findViewById(R.id.avgGameLengthValue);
+        TextView avgRallyLengthValue = (TextView) findViewById(R.id.avgRallyLengthValue);
+        TextView shotsPerSecondValue = (TextView) findViewById(R.id.avgShotSecValue);
+        TextView winnerErrorValue = (TextView) findViewById(R.id.winnersErrorsRatioValue);
 
         intent = getIntent();
-        rallyLength = (int) intent.getSerializableExtra("rallyLength");
-        totalShotsView.setText(rallyLength);
+        Bundle bundle = intent.getBundleExtra("information");
+        rallyLength = (int) bundle.getSerializable("rallyLength");
+        totalRallies = (int) bundle.getSerializable("numRallies");
+        totalRallies = (int) bundle.getSerializable("numRallies");
+        avgRallyLength = (float) bundle.getSerializable("avgRallyLength");
+        //shotsPerSecond = (float) bundle.getSerializable("shotsPerSecond");
+        winnerError = (float) bundle.getSerializable("winnerError");
+
+        totalShotsValue.setText(String.valueOf(rallyLength));
+        totalRalliesValue.setText(String.valueOf(totalRallies));
+        avgRallyLengthValue.setText(String.valueOf(avgRallyLength) + " Seconds");
+        Log.i("WinnersToErrors", String.valueOf(winnerError));
+        winnerErrorValue.setText(String.valueOf(winnerError));
+
+
+
+
 
 
 
@@ -38,8 +62,8 @@ public class statistics_tracker extends AppCompatActivity {
     }
 
     public void returnBack(View view) {
-        setResult(RESULT_OK, intent);
-        //Problem lies here that activity is destroyed
+        intent = new Intent(getApplicationContext(), MainActivity.class);
+        setResult(2, intent);
         finish();
 
 

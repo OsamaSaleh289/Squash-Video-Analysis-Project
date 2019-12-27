@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "453698093072",
+    "firebase_url": "https://playerdata-d8779.firebaseio.com",
+    "project_id": "playerdata-d8779",
+    "storage_bucket": "playerdata-d8779.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453698093072:android:a903e4e86aa7c1294c4a95",
+        "android_client_info": {
+          "package_name": "com.example.osama.videoanalysis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453698093072-sqo84auvtrkaq9qj680o66susdvr0akd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFeT74ymzWTSy8UoNpBElgnhgywwVyAn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453698093072-sqo84auvtrkaq9qj680o66susdvr0akd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
