@@ -277,6 +277,66 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/middleShotsPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Front Shots"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/middleShotsPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="100%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/backShotsPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Front Shots"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/ShotsPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="100%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+            </TableRow>
+
 
         </TableLayout>
     </ScrollView>

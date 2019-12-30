@@ -61,12 +61,12 @@
         android:id="@+id/button5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="12dp"
         android:background="@android:color/holo_blue_bright"
         android:fontFamily="sans-serif"
-        android:onClick="onConfirmClick"
+        android:onClick="onTypeSelect"
         android:tag="cancel"
         android:text="Cancel" />
 

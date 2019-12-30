@@ -19,6 +19,9 @@ public class statistics_tracker extends AppCompatActivity {
     float shotsPerSecond;
     float winnerError;
     public int testValue = 0;
+    float frontShotsPerc = 0;
+    float middleShotsPerc = 0;
+    float backShotsPerc = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,10 @@ public class statistics_tracker extends AppCompatActivity {
         TextView avgRallyLengthValue = (TextView) findViewById(R.id.avgRallyLengthValue);
         TextView shotsPerSecondValue = (TextView) findViewById(R.id.avgShotSecValue);
         TextView winnerErrorValue = (TextView) findViewById(R.id.winnersErrorsRatioValue);
+        TextView frontPercValue = (TextView) findViewById(R.id.frontShotsPercentage);
+
+        TextView midPercValue = (TextView) findViewById(R.id.middleShotsPercentage);
+        TextView backPercValue = (TextView) findViewById(R.id.backShotsPercentage);
 
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("information");
@@ -42,11 +49,14 @@ public class statistics_tracker extends AppCompatActivity {
         //shotsPerSecond = (float) bundle.getSerializable("shotsPerSecond");
         winnerError = (float) bundle.getSerializable("winnerError");
 
+
         totalShotsValue.setText(String.valueOf(rallyLength));
         totalRalliesValue.setText(String.valueOf(totalRallies));
         avgRallyLengthValue.setText(String.valueOf(avgRallyLength) + " Seconds");
-        Log.i("WinnersToErrors", String.valueOf(winnerError));
         winnerErrorValue.setText(String.valueOf(winnerError));
+        frontPercValue.setText(String.valueOf((float)bundle.getSerializable("frontPercentage")) + "%");
+        midPercValue.setText(String.valueOf((float)bundle.getSerializable("middlePercentage")) + "%");
+        backPercValue.setText(String.valueOf((float)bundle.getSerializable("backPercentage")) + "%");
 
 
 

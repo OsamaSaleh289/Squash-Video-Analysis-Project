@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             int count = 0;
 
             for (Shot shot: shots){
-                String areaHit = shot.getShotArea().substring(0,3);
-                if (areaHit.equals(areaDesired.substring(0,3))){
+                String areaHit = shot.getShotArea().substring(0,2);
+                if (areaHit.equals(areaDesired.substring(0,2))){
                     count += 1;
 
 
@@ -198,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     }
     public class Game implements Serializable{
-        private ArrayList<String>restDurations = new ArrayList<String>();
         private ArrayList<Rally> rallies = new ArrayList<Rally>();
         private int numberOfRallies = 0;
         private int totalGameShots = 0;
@@ -209,6 +208,20 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         public long getRallyDuration(){
 
             return rallyDuration;
+        }
+
+        public float calculatePercentages(String area){
+            int sum = 0;
+            if (rallies.size() != 0) {
+                for (Rally rally : rallies) {
+                    sum += rally.shotAreaCount(area);
+
+                }
+
+            }
+            return sum/totalGameShots;
+
+
         }
 
 
@@ -437,21 +450,24 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     //Handle shots at the front of the court
     public void onShot(View view){
+        Intent intent;
         if (currRally != null && rallyButton.getText().toString().equals("Rally End")) {
             //We want to not record our shot instantly after creating it but instead create the shot in one of the other
             //activities depending on if its a winner, an error, or neither. We will then have an array of shots that are
             //polymorphic
             if (view.getTag().toString().equals("frontLeft") || view.getTag().toString().equals("frontRight")) {
                 recordShot(view, "front");
+                intent = new Intent(getApplicationContext(), ShotDetails.class);
             } else if (view.getTag().toString().equals("midLeft") || view.getTag().toString().equals("midRight")) {
                 recordShot(view, "middle");
+                intent = new Intent(getApplicationContext(), shot_middle.class);
             } else {
                 recordShot(view, "back");
+                intent = new Intent(getApplicationContext(), shot_middle.class);
 
             }
 
             //Switch to next activity
-            Intent intent = new Intent(getApplicationContext(), ShotDetails.class);
             if (currRally.isFirstShot()) {
                 currShot.setServeTrue();
             }
@@ -503,16 +519,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             bundle.putSerializable("Total vollies", (Serializable) currGame.getSumVolleys());
             bundle.putSerializable("avgRallyLength", (Serializable) currGame.calculateAvgRallyLength());
             bundle.putSerializable("winnerError", (Serializable) currGame.calculateWinnerToError());
-            bundle.putSerializable("frontPercentage", currGame.calculatePercentages);
+            bundle.putSerializable("frontPercentage", currGame.calculatePercentages("front"));
+            bundle.putSerializable("middlePercentage", currGame.calculatePercentages("middle"));
+            bundle.putSerializable("backtPercentage", currGame.calculatePercentages("back"));
             //bundle.putSerializable("Avg Game Length", (Serializable) (currGame.getRallyDuration()/currMatch.getTotalGames()));
             stats_intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             loadActivity(stats_intent, bundle, 2);
-
-
-
-
-
-
 
         }
 
