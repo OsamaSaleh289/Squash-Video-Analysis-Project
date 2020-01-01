@@ -35,10 +35,10 @@ public class statistics_tracker extends AppCompatActivity {
         TextView avgRallyLengthValue = (TextView) findViewById(R.id.avgRallyLengthValue);
         TextView shotsPerSecondValue = (TextView) findViewById(R.id.avgShotSecValue);
         TextView winnerErrorValue = (TextView) findViewById(R.id.winnersErrorsRatioValue);
-        TextView frontPercValue = (TextView) findViewById(R.id.frontShotsPercentage);
 
-        TextView midPercValue = (TextView) findViewById(R.id.middleShotsPercentage);
-        TextView backPercValue = (TextView) findViewById(R.id.backShotsPercentage);
+        TextView frontPercValue = (TextView) findViewById(R.id.frontShotsPercentageValue);
+        TextView midPercValue = (TextView) findViewById(R.id.middleShotsPercentageValue);
+        TextView backPercValue = (TextView) findViewById(R.id.backShotsPercentageValue);
 
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("information");

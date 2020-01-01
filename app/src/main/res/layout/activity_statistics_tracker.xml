@@ -324,7 +324,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/ShotsPercentageValue"
+                    android:id="@+id/backShotsPercentageValue"
                     android:layout_weight="0"
                     android:background="#000000"
                     android:gravity="center"

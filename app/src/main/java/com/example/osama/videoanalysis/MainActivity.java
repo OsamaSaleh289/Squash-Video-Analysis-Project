@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     long saveTime;
     Chronometer timer;
     long pauseOffset;
+    String saveTimeString;
+
 
     public static class Shot implements Serializable{
         private Boolean volleyOpportunity;
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 }
 
             }
+            Log.i("Count for type ", areaDesired +" =" + count + " while the number of shots is "+shots.size());
             return count;
 
         }
@@ -217,9 +220,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                     sum += rally.shotAreaCount(area);
 
                 }
+                return sum/totalGameShots;
 
             }
-            return sum/totalGameShots;
+            return 0;
 
 
         }
@@ -521,7 +525,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             bundle.putSerializable("winnerError", (Serializable) currGame.calculateWinnerToError());
             bundle.putSerializable("frontPercentage", currGame.calculatePercentages("front"));
             bundle.putSerializable("middlePercentage", currGame.calculatePercentages("middle"));
-            bundle.putSerializable("backtPercentage", currGame.calculatePercentages("back"));
+            bundle.putSerializable("backPercentage", currGame.calculatePercentages("back"));
             //bundle.putSerializable("Avg Game Length", (Serializable) (currGame.getRallyDuration()/currMatch.getTotalGames()));
             stats_intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             loadActivity(stats_intent, bundle, 2);
@@ -576,6 +580,42 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         timer = (Chronometer)findViewById(R.id.rallyTimer);
+
+        //This chunk of code ensures our timer runs at .25 speed
+        Chronometer.OnChronometerTickListener listener = new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long currentValue = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000;
+                Log.i("currentValue = ", String.valueOf(currentValue));
+                if (currentValue % 4 == 0){
+                    int minutes = (int)(currentValue / 60 / 4);
+                    Log.i("minutes ", String.valueOf(minutes));
+                    if (minutes > 0){
+                        if (minutes >= 9){
+                            saveTimeString = "0"+minutes+":"+((currentValue / 4) % 60);
+
+                        } else{
+                            saveTimeString = minutes+":"+((currentValue / 4) % 60);
+
+                        }
+
+                    } else {
+                        if (currentValue / 4 < 10) {
+                            saveTimeString = "00:0" + currentValue / 4;
+                        } else{
+                            saveTimeString = "00:" + currentValue / 4;
+                        }
+                        timer.setText(saveTimeString);
+                    }
+                } else{
+                    timer.setText(saveTimeString);
+                }
+
+
+            }
+        };
+
+        timer.setOnChronometerTickListener(listener);
 
         //Log.i("timer base", String.valueOf(timer.getBase()));
 
