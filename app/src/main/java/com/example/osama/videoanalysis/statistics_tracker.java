@@ -53,10 +53,17 @@ public class statistics_tracker extends AppCompatActivity {
         totalShotsValue.setText(String.valueOf(rallyLength));
         totalRalliesValue.setText(String.valueOf(totalRallies));
         avgRallyLengthValue.setText(String.valueOf(avgRallyLength) + " Seconds");
-        winnerErrorValue.setText(String.valueOf(winnerError));
-        frontPercValue.setText(String.valueOf((float)bundle.getSerializable("frontPercentage")) + "%");
-        midPercValue.setText(String.valueOf((float)bundle.getSerializable("middlePercentage")) + "%");
-        backPercValue.setText(String.valueOf((float)bundle.getSerializable("backPercentage")) + "%");
+
+        if (winnerError == 10000){
+            winnerErrorValue.setText("-----");
+
+        } else {
+            winnerErrorValue.setText(String.valueOf(winnerError));
+
+        }
+        frontPercValue.setText(String.valueOf((double)bundle.getSerializable("frontPercentage")) + "%");
+        midPercValue.setText(String.valueOf((double)bundle.getSerializable("middlePercentage")) + "%");
+        backPercValue.setText(String.valueOf((double)bundle.getSerializable("backPercentage")) + "%");
 
 
 

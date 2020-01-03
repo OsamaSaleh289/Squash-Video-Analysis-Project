@@ -13,8 +13,8 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
     Button shotType;
 
     Intent intent;
-    MainActivity.Shot currShot;
-    MainActivity.Rally currRally;
+    Shot currShot;
+    Rally currRally;
 
     public void onTypeSelect(View view){
         Button confirm = (Button) findViewById(R.id.confirm);
@@ -80,11 +80,11 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
     public void onConfirmClick(View view){
         //We need to only allow confirm click if we have a shot value
-        if (shotType != null) {
+        /*if (shotType != null) {
 
-            /*if (shotType.getTag().toString().equals("winner")) {
+            if (shotType.getTag().toString().equals("winner")) {
                 //Change view to get more detailed info about shots
-                MainActivity.Winner currShot = new MainActivity.Winner();
+                Winner currShot = new Winner();
 
                 Intent detailed_winner = new Intent(getApplicationContext(), winner_error.class);
                 Bundle bundle = new Bundle();
@@ -95,30 +95,30 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
 
             } else if(shotType.getTag().toString().equals("error")){
-                MainActivity.Error currShot = new MainActivity.Error();
+                Error currShot = new Error();
 
                 Intent detailed_winner = new Intent(getApplicationContext(), winner_error.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Winner/Error", (Serializable) shotType.getTag());
-                bundle.putSerializable("shotObject", (Serializable) currShot);
+                //bundle.putSerializable("shotObject", (Serializable) currShot);
                 intent.putExtras(bundle);
                 startActivityForResult(detailed_winner, 3);
 
 
 
-            } else{*/
+            } else*/
                 currShot.setShotType(shotType.getText().toString());
                 currRally.addShot(currShot);
                 endActivity();
 
 
-            //}
+            }
 
 
-        }
+        //}
 
 
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +128,8 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("information");
-        currShot = (MainActivity.Shot)  bundle.get("shotObject");
-        currRally = (MainActivity.Rally) bundle.get("rallyObject");
+        currShot = (Shot)  bundle.get("shotObject");
+        currRally = (Rally) bundle.get("rallyObject");
         if (currShot.isServe()){
             Button serveButton = (Button) findViewById(R.id.let_stroke);
             serveButton.setText("Volley Return");
@@ -140,14 +140,17 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
     }
 
-    /*@Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
+        Shot winnerErrorType = (Shot) intent.getSerializableExtra("type");
+
+
+        currShot = winnerErrorType;
         currRally.addShot(currShot);
         currShot.setParentRally(currRally);
-        setResult(RESULT_OK, intent);
-        finish();
+        endActivity();
 
 
-    }*/
+    }
 }

@@ -13,12 +13,12 @@ public class shot_middle extends AppCompatActivity {
     Button shotType;
 
     Intent intent;
-    MainActivity.Shot currShot;
-    MainActivity.Rally currRally;
+    Shot currShot;
+    Rally currRally;
 
     public void onTypeSelect(View view){
         Button confirm = (Button) findViewById(R.id.confirm2);
-        //confirm.setAlpha((float) 1);
+        confirm.setAlpha((float) 1);
 
 
 
@@ -93,8 +93,8 @@ public class shot_middle extends AppCompatActivity {
 
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("information");
-        currShot = (MainActivity.Shot)  bundle.get("shotObject");
-        currRally = (MainActivity.Rally) bundle.get("rallyObject");
+        currShot = (Shot)  bundle.get("shotObject");
+        currRally = (Rally) bundle.get("rallyObject");
         if (currShot.isServe()){
             Button serveButton = (Button) findViewById(R.id.volleyShot);
             serveButton.setText("Volley Return");

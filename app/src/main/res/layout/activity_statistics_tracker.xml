@@ -288,7 +288,7 @@
                     android:background="#000000"
                     android:gravity="center"
                     android:padding="20dip"
-                    android:text="% Front Shots"
+                    android:text="% Middle Shots"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
@@ -318,7 +318,7 @@
                     android:background="#000000"
                     android:gravity="center"
                     android:padding="20dip"
-                    android:text="% Front Shots"
+                    android:text="% Back Shots"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
@@ -336,6 +336,138 @@
 
 
             </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/winnerDetails"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="Winner details"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tinPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Opponent tin"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/tinPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/dropPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Drop"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/dropPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/straightPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Straight"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/straightPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+           <!-- <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <Button
+                    android:id="@+id/backButton"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="fill_parent"
+                    android:layout_height="108dp"
+                    android:layout_marginTop="456dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:onClick="returnBack"
+                    android:text="Return to Main Screen"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </TableRow>-->
 
 
         </TableLayout>

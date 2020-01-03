@@ -6,85 +6,66 @@
     android:layout_height="match_parent"
     tools:context="com.example.osama.videoanalysis.winner_error">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        android:onClick="onConfirmation"
+        android:text="Confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/straight" />
 
-        <Button
-            android:id="@+id/confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="102dp"
-            android:background="?attr/colorAccent"
-            android:onClick="onConfirmation"
-            android:text="Confirm"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="434dp" />
+    <Button
+        android:id="@+id/straight"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onChoice"
+        android:text="Straight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boast" />
 
-        <Button
-            android:id="@+id/straight"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/confirm"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="40dp"
-            android:onClick="onChoice"
-            android:text="Straight"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="332dp" />
+    <Button
+        android:id="@+id/boast"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onChoice"
+        android:tag="boast"
+        android:text="Boast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kill" />
 
-        <Button
-            android:id="@+id/boast"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:onClick="onChoice"
-            android:tag="boast"
-            android:text="Boast"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="259dp" />
+    <Button
+        android:id="@+id/kill"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onChoice"
+        android:tag="kill"
+        android:text="Kill"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drop" />
 
-        <Button
-            android:id="@+id/kill"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/boast"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:onClick="onChoice"
-            android:tag="kill"
-            android:text="Kill"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="185dp" />
+    <Button
+        android:id="@+id/lob"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:onClick="onChoice"
+        android:tag="lob"
+        android:text="Lob"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/lob"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/kill"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="23dp"
-            android:onClick="onChoice"
-            android:tag="lob"
-            android:text="Lob"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="57dp" />
-
-        <Button
-            android:id="@+id/drop"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/lob"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="14dp"
-            android:onClick="onChoice"
-            android:text="Drop"
-            android:tag="drop"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="121dp" />
-    </RelativeLayout>
+    <Button
+        android:id="@+id/drop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onChoice"
+        android:tag="drop"
+        android:text="Drop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lob" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

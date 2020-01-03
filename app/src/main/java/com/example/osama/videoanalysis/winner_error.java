@@ -3,12 +3,16 @@ package com.example.osama.videoanalysis;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import java.io.Serializable;
+
 public class winner_error extends AppCompatActivity {
-    MainActivity.Shot currWinnerError;
+    Shot currWinnerError;
     String shotChoice;
     Intent intent;
+    String winner_error;
     public void onChoice(View view){
 
         if (view.getTag().toString().equals("boast")){
@@ -35,9 +39,24 @@ public class winner_error extends AppCompatActivity {
     }
 
     public void onConfirmation(View view){
-        currWinnerError.setShotType(shotChoice);
+
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+
+        if (winner_error.equals("Winner")) {
+            currWinnerError.setShotType("Winner/"+shotChoice);
+        } else {
+            currWinnerError.setShotType("Error/"+shotChoice);
+
+        }
+        bundle.putSerializable("type", currWinnerError);
+        intent.putExtra("Updated information", bundle);
         setResult(RESULT_OK, intent);
         finish();
+
+        /*currWinnerError.setShotType(shotChoice);
+        setResult(RESULT_OK, intent);
+        finish();*/
 
 
 
@@ -50,14 +69,15 @@ public class winner_error extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner_error);
         intent = getIntent();
-        String winner_error = (String)intent.getSerializableExtra("Winner/Error");
+        Log.i("reached", "vfibhegwrjf");
+        winner_error = (String)intent.getSerializableExtra("Winner/Error");
         //Do this or just concatenate winner type with shotType in class
-        if (winner_error == "winner"){
-            currWinnerError = (MainActivity.Winner)intent.getSerializableExtra("shotObject");
+        if (winner_error.equals("winner")){
+            currWinnerError = (Winner)intent.getSerializableExtra("shotObject");
 
 
         } else {
-            currWinnerError = (MainActivity.Error)intent.getSerializableExtra("shotObject");
+            currWinnerError = (Error)intent.getSerializableExtra("shotObject");
 
         }
 
