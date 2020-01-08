@@ -50,6 +50,21 @@ public class Rally implements Serializable {
         return totalVolleys;
 
     }
+
+    public ArrayList<String> getWinnersErrors(){
+        ArrayList<String> winnersErrors = new ArrayList<String>();
+        for (Shot shot :shots){
+            if (shot.getShotType().substring(0,3).equals("Win") || shot.getShotType().substring(0,3).equals("Err")){
+                winnersErrors.add(shot.getShotType());
+
+            }
+
+        }
+        return winnersErrors;
+
+
+    }
+
     public void addShot(Shot shot){
         shots.add(shot);
         Log.i("shotType", shot.getShotType());
@@ -57,10 +72,10 @@ public class Rally implements Serializable {
         if (shot.getShotType().equals("Volley") || shot.getShotType().equals("volley")){
             totalVolleys += 1;
 
-        } else if (shot.getShotType().substring(0,6).equals("Winner")) {
+        } else if (shot.getShotType().substring(0,3).equals("Win")) {
             numWinners += 1;
 
-        }else if (shot.getShotType().substring(0,6).equals("Error")) {
+        }else if (shot.getShotType().substring(0,3).equals("Err")) {
             numErrors += 1;
         }
 

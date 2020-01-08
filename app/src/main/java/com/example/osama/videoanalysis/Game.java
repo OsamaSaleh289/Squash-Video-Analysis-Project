@@ -4,18 +4,150 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class Game implements Serializable {
+    public boolean saved = false;
     public ArrayList<Rally> rallies = new ArrayList<Rally>();
     private int numberOfRallies = 0;
-    private double totalGameShots = 0;
+    private long totalGameShots = 0;
     private float shotsPerSecond = 0;
-    private float avgRallyLength = 0;
-    private long rallyDuration = 0;
+    private double averageRallyLength = 0;
+    private long gameDuration = 0;
 
-    public long getRallyDuration() {
+    private float winnersToErrors = 0;
+    private double FrontShotsPercentage = 0;
+    private double MiddleShotsPercentage = 0;
+    private double BackShotsPercentage = 0;
+    private int totalRallies = 0;
 
-        return rallyDuration;
+    private HashMap<String, Integer> errorData = new HashMap<String, Integer>();
+    private HashMap<String, Integer> winnerData = new HashMap<String, Integer>();
+
+    public Game(){
+        errorData.put("boast", 0);
+        errorData.put("kill", 0);
+        errorData.put("straight", 0);
+        errorData.put("drop", 0);
+        errorData.put("lob", 0);
+
+        winnerData.put("boast", 0);
+        winnerData.put("kill", 0);
+        winnerData.put("straight", 0);
+        winnerData.put("drop", 0);
+        winnerData.put("lob", 0);
+
+    }
+
+    public int getTotalWinners(){
+        int sum = 0;
+        for (int winner : winnerData.values()){
+            sum += winner;
+
+        }
+        return sum;
+    }
+
+    public int getTotalErrors(){
+        int sum = 0;
+        for (int error : errorData.values()){
+            sum += error;
+
+        }
+        return sum;
+    }
+
+    public  HashMap[] calculateWinnersErrors(){
+        for (Rally rally : rallies) {
+            ArrayList<String> winnersErrors = rally.getWinnersErrors();
+            for (String type : winnersErrors) {
+                String winnerErrorType = type.split("/")[1];
+                if (type.substring(0, 3).equals("Win")) {
+                    winnerData.put(winnerErrorType, winnerData.get(winnerErrorType) + 1);
+                } else if (type.substring(0, 3).equals("Err")) {
+                    errorData.put(winnerErrorType, errorData.get(winnerErrorType) + 1);
+                }
+
+            }
+        }
+        return new HashMap[]{winnerData, errorData};
+
+    }
+
+    public int getNumberOfRallies(){
+        return rallies.size();
+
+    }
+
+    public float getShotsPerSecond() {
+        return shotsPerSecond;
+    }
+
+    public long calculateShotsPerSecond(long totalGameTime) {
+        Log.i("new time is ", String.valueOf(totalGameTime));
+        long currentValue = totalGameTime / 4;
+        if (currentValue > 0){
+            return totalGameShots / currentValue;
+        }
+        return totalGameShots;
+
+
+
+    }
+
+    public String getAverageRallyLength() {
+        return averageRallyLength + " seconds";
+    }
+
+    public void setAverageRallyLength(double averageRallyLength) {
+        this.averageRallyLength = averageRallyLength;
+    }
+
+    public float getWinnersToErrors() {
+        return winnersToErrors;
+    }
+
+    public void setWinnersToErrors(float winnersToErrors) {
+        this.winnersToErrors = winnersToErrors;
+    }
+
+    public double getFrontShotsPercentage() {
+        return FrontShotsPercentage;
+    }
+
+    public void setFrontShotsPercentage(double frontShotsPercentage) {
+        this.FrontShotsPercentage = frontShotsPercentage;
+    }
+
+    public double getMiddleShotsPercentage() {
+        return MiddleShotsPercentage;
+    }
+
+    public void setMiddleShotsPercentage(double middleShotsPercentage) {
+        this.MiddleShotsPercentage = middleShotsPercentage;
+    }
+
+    public double getBackShotsPercentage() {
+        return BackShotsPercentage;
+    }
+
+    public void setBackShotsPercentage(double backShotsPercentage) {
+        this.BackShotsPercentage = backShotsPercentage;
+    }
+
+    public int getTotalRallies() {
+        return totalRallies;
+    }
+
+    public void setTotalRallies(int totalRallies) {
+        this.totalRallies = totalRallies;
+    }
+
+    public long getGameDuration() {
+
+        return (gameDuration/4000);
     }
 
     public double calculatePercentages(String area) {
@@ -38,7 +170,7 @@ public class Game implements Serializable {
 
     public void setCurrentDuration(long time) {
         //The time on the clock when we end the game
-        rallyDuration += time;
+        gameDuration += time;
 
     }
 
@@ -49,7 +181,7 @@ public class Game implements Serializable {
 
     }
 
-    public int getSumVolleys() {
+    public int getVolleysSum() {
 
         int total = 0;
         for (Rally rally : rallies) {
@@ -60,9 +192,9 @@ public class Game implements Serializable {
         return total;
     }
 
-    public float calculateAvgRallyLength() {
-        float sum = 0;
-        float count = 0;
+    public double calculateAvgRallyLength() {
+        double sum = 0;
+        double count = 0;
         if (numberOfRallies != 0) {
 
             for (int i = 0; i < rallies.size(); i++) {
@@ -71,10 +203,8 @@ public class Game implements Serializable {
 
 
             }
-            avgRallyLength = sum / count;
         }
-        Log.i("time", String.valueOf(sum));
-        return avgRallyLength;
+        return sum / count;
 
 
     }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "453698093072-u0150vbdser3s76d7hn67083hf56kdub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.osama.videoanalysis",
+            "certificate_hash": "a7508b4c764ab85c232514e6118173054e8465a1"
+          }
+        },
+        {
           "client_id": "453698093072-sqo84auvtrkaq9qj680o66susdvr0akd.apps.googleusercontent.com",
           "client_type": 3
         }

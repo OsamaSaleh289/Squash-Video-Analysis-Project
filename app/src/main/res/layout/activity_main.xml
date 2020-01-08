@@ -8,137 +8,151 @@
 
 
     <TextView
-        android:id="@+id/midRight"
-        android:layout_width="199dp"
-        android:layout_height="125dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/servebox"
-        android:onClick="onShot"
-        android:tag="midRight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/midLeft"
-        app:layout_constraintTop_toBottomOf="@+id/frontRight" />
-
-    <TextView
         android:id="@+id/midLeft"
-        android:layout_width="187dp"
-        android:layout_height="126dp"
+        android:layout_width="217dp"
+        android:layout_height="163dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/servebox"
         android:onClick="onShot"
         android:tag="midLeft"
+        app:layout_constraintBottom_toTopOf="@+id/backLeft"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frontLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <TextView
+        android:id="@+id/midRight"
+        android:layout_width="195dp"
+        android:layout_height="165dp"
+        android:background="@drawable/servebox"
+        android:onClick="onShot"
+        android:tag="midRight"
+        app:layout_constraintBottom_toTopOf="@+id/backRight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
+    <TextView
+        android:id="@+id/backLeft"
+        android:layout_width="205dp"
+        android:layout_height="271dp"
+        android:background="@drawable/backandfront"
+        android:onClick="onShot"
+        android:tag="backLeft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/courtLine" />
 
     <TextView
         android:id="@+id/courtLine"
         android:layout_width="7dp"
-        android:layout_height="258dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="204dp"
+        android:layout_height="264dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/red"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="@+id/backLeft"
-        app:layout_constraintTop_toBottomOf="@+id/rallyButton" />
-
-    <TextView
-        android:id="@+id/frontLeft"
-        android:layout_width="188dp"
-        android:layout_height="234dp"
-        android:layout_marginEnd="52dp"
-        android:background="@drawable/backandfront"
-        android:onClick="onShot"
-        android:tag="frontLeft"
-        app:layout_constraintEnd_toEndOf="@+id/rallyButton"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <TextView
-        android:id="@+id/frontRight"
-        android:layout_width="345dp"
-        android:layout_height="234dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/backandfront"
-        android:onClick="onShot"
-        android:tag="frontRight"
-        app:layout_constraintStart_toStartOf="@+id/rallyButton"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <TextView
-        android:id="@+id/backLeft"
-        android:layout_width="196dp"
-        android:layout_height="243dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/backandfront"
-        android:onClick="onShot"
-        android:tag="backLeft"
-        app:layout_constraintTop_toTopOf="@+id/courtLine"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/backRight"
-        android:layout_width="215dp"
-        android:layout_height="254dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="186dp"
+        android:layout_height="271dp"
         android:background="@drawable/backandfront"
         android:onClick="onShot"
         android:tag="backRight"
-        app:layout_constraintStart_toStartOf="@+id/courtLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/courtLine"
         app:layout_constraintTop_toTopOf="@+id/courtLine" />
 
-    <Button
-        android:id="@+id/rallyButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="88dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:onClick="startRally"
-        android:text="Rally Start"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/frontLeft"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="292dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/frontLeft"
+            android:layout_width="149dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/backandfront"
+            android:onClick="onShot"
+            android:tag="frontLeft" />
+
+        <TableLayout
+            android:layout_width="118dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/backandfront">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/pauseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/holo_green_light"
+                    android:onClick="pauseTimerOnClick"
+                    android:text="Rally Pause" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/rallyButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:onClick="startRally"
+                    android:text="Rally Start"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/endGame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="endCurrentGame"
+                    android:text="End Game" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/saveToFirebase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onSaveClick"
+                    android:text="Save Match" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/frontRight"
+            android:layout_width="342dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/backandfront"
+            android:onClick="onShot"
+            android:tag="frontRight" />
+    </LinearLayout>
 
     <Chronometer
         android:id="@+id/rallyTimer"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:layout_marginBottom="188dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/frontRight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.921"
-        app:layout_constraintStart_toEndOf="@+id/pauseButton" />
-
-    <Button
-        android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:onClick="pauseTimerOnClick"
-        android:text="Rally Pause"
-        app:layout_constraintBottom_toTopOf="@+id/rallyButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/endGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="endCurrentGame"
-        android:text="End Game"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="156dp" />
+        android:textSize="18sp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

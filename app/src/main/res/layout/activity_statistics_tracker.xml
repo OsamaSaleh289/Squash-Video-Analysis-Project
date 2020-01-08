@@ -21,6 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/saveButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="fill_parent"
+        android:layout_height="108dp"
+        android:layout_marginTop="456dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="returnBack"
+        android:text="Save Game"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -133,7 +147,7 @@
                 android:gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/avgRallyLength"
+                    android:id="@+id/averageRallyLength"
                     android:layout_weight="0"
                     android:background="@android:color/holo_green_light"
                     android:gravity="center"
@@ -363,18 +377,18 @@
                 android:gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/tinPercentage"
+                    android:id="@+id/boastPercentage"
                     android:layout_weight="0"
                     android:background="#000000"
                     android:gravity="center"
                     android:padding="20dip"
-                    android:text="% Opponent tin"
+                    android:text="% Boast"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/tinPercentageValue"
+                    android:id="@+id/boastPercentageValue"
                     android:layout_weight="0"
                     android:background="#000000"
                     android:gravity="center"
@@ -437,6 +451,68 @@
 
                 <TextView
                     android:id="@+id/straightPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/lobPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Lob"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/lobPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/killPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Kill"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/killPercentageValue"
                     android:layout_weight="0"
                     android:background="#000000"
                     android:gravity="center"

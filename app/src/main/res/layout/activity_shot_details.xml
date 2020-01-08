@@ -18,31 +18,84 @@
         android:textColor="@android:color/background_dark"
         android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/winner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shotType"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:background="@android:color/holo_orange_light"
-        android:fontFamily="serif"
-        android:onClick="onTypeSelect"
-        android:text="Winner"
-        android:tag="winner"/>
 
-    <Button
-        android:id="@+id/normalShot"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/let_stroke"
-        android:layout_marginTop="18dp"
-        android:background="@android:color/holo_orange_light"
-        android:fontFamily="sans-serif"
-        android:onClick="onTypeSelect"
-        android:tag="normalShot"
-        android:text="Normal Shot" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_below="@+id/shotType"
+        android:layout_marginTop="57dp">
+
+        <TableRow
+            android:layout_width="410dp"
+            android:layout_height="match_parent">
+
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/winner_spinner"
+                android:layout_width="410dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_orange_light"
+
+
+                android:backgroundTint="@android:color/holo_orange_light"
+                android:hint="Winner"
+                android:textColorHint="@android:color/black"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textCursorDrawable="@color/common_google_signin_btn_text_dark_focused" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/error_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_orange_light"
+
+
+                android:hint="Error"
+                android:textColorHint="@android:color/black"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textCursorDrawable="@color/common_google_signin_btn_text_dark_focused" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/let_stroke"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/holo_orange_light"
+                android:fontFamily="sans-serif"
+                android:onClick="onTypeSelect"
+                android:tag="let/stroke"
+                android:text="Let/Stroke" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/normalShot"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@android:color/holo_orange_light"
+                android:fontFamily="sans-serif"
+                android:onClick="onTypeSelect"
+                android:tag="normalShot"
+                android:text="Normal Shot" />
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:id="@+id/confirm"
@@ -53,6 +106,7 @@
         android:layout_marginBottom="24dp"
         android:alpha="0"
         android:background="@android:color/holo_red_dark"
+        android:clickable="false"
         android:fontFamily="sans-serif"
         android:onClick="onConfirmClick"
         android:text="Confirm" />
@@ -70,31 +124,6 @@
         android:tag="cancel"
         android:text="Cancel" />
 
-    <Button
-        android:id="@+id/let_stroke"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/error"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/holo_orange_light"
-        android:fontFamily="sans-serif"
-        android:onClick="onTypeSelect"
-        android:text="Let/Stroke"
-        android:tag="let/stroke"/>
-
-    <Button
-        android:id="@+id/error"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/winner"
-        android:layout_marginTop="11dp"
-        android:background="@android:color/holo_orange_light"
-        android:fontFamily="sans-serif"
-        android:onClick="onTypeSelect"
-        android:text="Error"
-        android:tag="error"/>
 </RelativeLayout>
 
 

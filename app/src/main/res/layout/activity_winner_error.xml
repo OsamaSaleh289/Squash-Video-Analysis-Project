@@ -6,66 +6,102 @@
     android:layout_height="match_parent"
     tools:context="com.example.osama.videoanalysis.winner_error">
 
-    <Button
-        android:id="@+id/confirm"
+    <TableLayout
+        android:layout_width="421dp"
+        android:layout_height="570dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/lob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onChoice"
+                android:tag="lob"
+                android:text="Lob" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/straight"
+                android:layout_width="407dp"
+                android:layout_height="wrap_content"
+                android:onClick="onChoice"
+                android:tag="straight"
+                android:text="Straight" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/drop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onChoice"
+                android:tag="drop"
+                android:text="Drop " />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/boast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onChoice"
+                android:tag="boast"
+                android:text="boast" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/kill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onChoice"
+                android:tag="kill"
+                android:text="kill" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/confrim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="onConfirmation"
+                android:tag="confirm"
+                android:text="confirm" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorAccent"
-        android:onClick="onConfirmation"
-        android:text="Confirm"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="80dp"
+        android:text="Shot Type"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/straight" />
-
-    <Button
-        android:id="@+id/straight"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onChoice"
-        android:text="Straight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boast" />
-
-    <Button
-        android:id="@+id/boast"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onChoice"
-        android:tag="boast"
-        android:text="Boast"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kill" />
-
-    <Button
-        android:id="@+id/kill"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onChoice"
-        android:tag="kill"
-        android:text="Kill"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drop" />
-
-    <Button
-        android:id="@+id/lob"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:onClick="onChoice"
-        android:tag="lob"
-        android:text="Lob"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/drop"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onChoice"
-        android:tag="drop"
-        android:text="Drop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lob" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

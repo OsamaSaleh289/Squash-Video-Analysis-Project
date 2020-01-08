@@ -3,6 +3,7 @@ package com.example.osama.videoanalysis;
 import java.io.Serializable;
 
 public class Shot implements Serializable{
+        public String specificID = "";
         private Boolean volleyOpportunity;
         private Boolean volley;
         public String shotType;
@@ -10,6 +11,9 @@ public class Shot implements Serializable{
         private String shotArea = "";
         private Rally parentRally;
 
+        public String getSpecificID() {
+            return specificID;
+        }
 
         public String getShotType(){
 

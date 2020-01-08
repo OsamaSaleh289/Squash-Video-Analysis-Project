@@ -40,17 +40,17 @@ public class winner_error extends AppCompatActivity {
 
     public void onConfirmation(View view){
 
-        Intent intent = new Intent();
+        Intent intent = new Intent(getApplicationContext(), ShotDetails.class);
         Bundle bundle = new Bundle();
 
-        if (winner_error.equals("Winner")) {
+        /*if (winner_error.equals("Winner")) {
             currWinnerError.setShotType("Winner/"+shotChoice);
         } else {
             currWinnerError.setShotType("Error/"+shotChoice);
 
-        }
-        bundle.putSerializable("type", currWinnerError);
-        intent.putExtra("Updated information", bundle);
+        }*/
+        bundle.putSerializable("choice", shotChoice);
+        intent.putExtra("choiceBundle", bundle);
         setResult(RESULT_OK, intent);
         finish();
 
@@ -68,18 +68,17 @@ public class winner_error extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner_error);
-        intent = getIntent();
-        Log.i("reached", "vfibhegwrjf");
-        winner_error = (String)intent.getSerializableExtra("Winner/Error");
+        //intent = getIntent();
+        //winner_error = (String)intent.getSerializableExtra("Winner/Error");
         //Do this or just concatenate winner type with shotType in class
-        if (winner_error.equals("winner")){
+        /*if (winner_error.equals("winner")){
             currWinnerError = (Winner)intent.getSerializableExtra("shotObject");
 
 
         } else {
             currWinnerError = (Error)intent.getSerializableExtra("shotObject");
 
-        }
+        }*/
 
 
     }

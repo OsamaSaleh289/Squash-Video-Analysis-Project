@@ -14,12 +14,16 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
-
+    DatabaseReference matchReff;
     Button rallyButton;
+    long currentValue;
     TextView shotArea;
     String rallyTime;
     Match currMatch;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     Chronometer timer;
     long pauseOffset;
     String saveTimeString;
+    int gameCount;
+    int matchCount;
 
 
     //Load a new activity and send appropriate data
@@ -83,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             timer.setBase(SystemClock.elapsedRealtime());
             pauseOffset = 0;
             //Ensure all the rallies are longer than one shot
-            //Toast.makeText(MainActivity.this, "Rally Successfully Added", Toast.LENGTH_SHORT).show();
             if (currRally != null && currRally.getRallyLength() != 0) {
                 //Currently only updates when length of rally is less than a minute
                 currRally.setRallyDuration(Integer.parseInt(rallyTime.substring(3,5)));
@@ -147,9 +152,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
 
+
+
     //Handle shots at the front of the court
     public void onShot(View view){
         Intent intent;
+        Log.i("this", String.valueOf((SystemClock.elapsedRealtime() - timer.getBase())/4000) + " after /4000");
         if (currRally != null && rallyButton.getText().toString().equals("Rally End")) {
             //We want to not record our shot instantly after creating it but instead create the shot in one of the other
             //activities depending on if its a winner, an error, or neither. We will then have an array of shots that are
@@ -206,26 +214,28 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }*/
 
     public void endCurrentGame(View view) {
-        Log.i("front percentage = ", String.valueOf(currGame.calculatePercentages("front")));
-        Log.i("total shots = ", String.valueOf(currGame.calculateTotalShots()));
         if (currGame.calculateTotalShots() > 0){
-            currMatch.addGame(currGame);
             //currGame = new Game();
             Intent stats_intent = new Intent(getApplicationContext(), statistics_tracker.class);
             Bundle bundle = new Bundle();
 
-            Log.i("currGame", String.valueOf(currGame.calculateTotalShots()));
 
             bundle.putSerializable("rallyLength",(Serializable) currGame.calculateTotalShots());
             bundle.putSerializable("numRallies",(Serializable) currGame.rallies.size());
-            bundle.putSerializable("Total vollies", (Serializable) currGame.getSumVolleys());
+            bundle.putSerializable("Total vollies", (Serializable) currGame.getVolleysSum());
             bundle.putSerializable("avgRallyLength", (Serializable) currGame.calculateAvgRallyLength());
             bundle.putSerializable("winnerError", (Serializable) currGame.calculateWinnerToError());
             bundle.putSerializable("frontPercentage", currGame.calculatePercentages("front"));
             bundle.putSerializable("middlePercentage", currGame.calculatePercentages("middle"));
             bundle.putSerializable("backPercentage", currGame.calculatePercentages("back"));
-            //bundle.putSerializable("Avg Game Length", (Serializable) (currGame.getRallyDuration()/currMatch.getTotalGames()));
+            bundle.putSerializable("matchObject", (Serializable) currMatch);
+            bundle.putSerializable("gameObject", (Serializable) currGame);
+       //     Toast.makeText(getApplicationContext(), String.valueOf(currentValue), Toast.LENGTH_SHORT).show();
+            bundle.putSerializable("shotsPerSecond", (Serializable)currGame.calculateShotsPerSecond(currentValue));
+            bundle.putSerializable("winnersErrors", (Serializable) currGame.calculateWinnersErrors());
+            //bundle.putSerializable("Avg Game Length", (Serializable) (currGame.getGameDuration()/currMatch.getTotalGames()));
             stats_intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            gameCount += 1;
             loadActivity(stats_intent, bundle, 2);
 
         }
@@ -268,6 +278,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     }
 
+    public void onSaveClick(View view){
+        for (Game game : currMatch.games) {
+            if (!game.saved) {
+                matchReff.child("Games").push().setValue(game);
+                game.saved = true;
+            }
+        }
+    }
+
 
 
 
@@ -277,13 +296,17 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        matchReff = FirebaseDatabase.getInstance().getReference().child("Match");
+
+
+
         timer = (Chronometer)findViewById(R.id.rallyTimer);
 
         //This chunk of code ensures our timer runs at .25 speed
         Chronometer.OnChronometerTickListener listener = new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                long currentValue = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000;
+                currentValue = (SystemClock.elapsedRealtime() - timer.getBase()) / 1000;
                 Log.i("currentValue = ", String.valueOf(currentValue));
                 if (currentValue % 4 == 0){
                     int minutes = (int)(currentValue / 60 / 4);
@@ -325,8 +348,14 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         rallyButton = (Button) findViewById(R.id.rallyButton);
         TextView courtLine = (TextView) findViewById(R.id.courtLine);
+        TextView mLeft = (TextView) findViewById(R.id.midLeft);
+        TextView mRight = (TextView) findViewById(R.id.midRight);
         pauseButton = (Button) findViewById(R.id.pauseButton);
         courtLine.bringToFront();
+        mLeft.bringToFront();
+        mRight.bringToFront();
+
+
 
 
 
@@ -340,14 +369,17 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             // Make sure the request was successful
             if (requestCode == 1) {
                 Bundle bundle = intent.getBundleExtra("Updated information");
-                currShot = (Shot) bundle.get("currShot");
-                currRally = (Rally) bundle.get("currRally");
+                currShot = (Shot) bundle.getSerializable("currShot");
+                currRally = (Rally) bundle.getSerializable("currRally");
                 currRally.setServeFalse();
                 Toast.makeText(MainActivity.this, String.valueOf(currRally.getRallyLength()), Toast.LENGTH_SHORT).show();
                 resumeTimer();
 
             } else if (requestCode == 2){
                 Toast.makeText(MainActivity.this, "New Game", Toast.LENGTH_SHORT).show();
+                Bundle bundle = intent.getBundleExtra("Updated Match");
+                currGame = (Game) bundle.getSerializable("gameObject");
+                currMatch.addGame(currGame);
                 currGame = new Game();
                 timer.setBase(SystemClock.elapsedRealtime());
                 pauseOffset = 0;
