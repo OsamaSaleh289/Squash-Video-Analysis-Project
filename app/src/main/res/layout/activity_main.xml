@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toTopOf="@+id/backLeft"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.333"
+        android:longClickable="true"/>
 
     <TextView
         android:id="@+id/midRight"
@@ -29,7 +30,8 @@
         android:tag="midRight"
         app:layout_constraintBottom_toTopOf="@+id/backRight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top" />
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        android:longClickable="true" />
 
     <TextView
         android:id="@+id/backLeft"
@@ -63,7 +65,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/courtLine"
-        app:layout_constraintTop_toTopOf="@+id/courtLine" />
+        app:layout_constraintTop_toTopOf="@+id/courtLine"
+        android:longClickable="true"/>
 
     <LinearLayout
         android:id="@+id/top"
@@ -79,7 +82,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/backandfront"
             android:onClick="onShot"
-            android:tag="frontLeft" />
+            android:tag="frontLeft"
+            android:longClickable="true"/>
 
         <TableLayout
             android:layout_width="118dp"

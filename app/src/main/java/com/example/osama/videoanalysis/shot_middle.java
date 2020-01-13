@@ -2,7 +2,10 @@ package com.example.osama.videoanalysis;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,26 +28,34 @@ public class shot_middle extends AppCompatActivity {
 
 
     public void onTypeSelect(View view){
+
         Button confirm = (Button) findViewById(R.id.confirm2);
-        confirm.setAlpha((float) 1);
-        confirm.setClickable(true);
+        if (!view.getTag().toString().equals("cancel")) {
+            confirm.setClickable(true);
+            confirm.setAlpha((float) 1);
+        }
 
 
         if (view.getTag().toString().equals("volleyShot")){
+            //shotType.setBackground(Drawable.createFromPath("@android:color/holo_orange_dark"));
             shotType = (Button) findViewById(R.id.volleyShot);
+            //shotType.setBackground(Drawable.createFromPath("@android:color/pink"));
             currShot.setShotType(shotType.getText().toString());
+            currShot.setVolley();
 
 
 
-        } else if (view.getTag().toString().equals("floor")){
+        } else if (view.getTag().toString().equals("floorShot")){
+            //shotType.setBackground(Drawable.createFromPath("@android:color/holo_orange_dark"));
             shotType = (Button) findViewById(R.id.floorShot);
+            //shotType.setBackground(Drawable.createFromPath("@android:color/pink"));
             currShot.setShotType(shotType.getText().toString());
 
 
             //Cancel Button
         } else if (view.getTag().toString().equals("cancel")) {
             intent = new Intent(getApplicationContext(), MainActivity.class);
-            setResult(RESULT_OK, intent);
+            setResult(4, intent);
             finish();
 
 
@@ -52,16 +63,11 @@ public class shot_middle extends AppCompatActivity {
 
 
 
-        if (shotType.getTag().toString().equals("let/stroke")) {
-            currShot.parentLetStroke();
-
-
-        }
-
     }
 
     public void onConfirmClick(View view){
             intent = new Intent(getApplicationContext(), MainActivity.class);
+            Log.i("currShot", String.valueOf(currShot.equals(null)));
             currRally.addShot(currShot);
             endActivity();
 
@@ -123,8 +129,8 @@ public class shot_middle extends AppCompatActivity {
 
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("information");
-        currShot = (Shot)  bundle.get("shotObject");
-        currRally = (Rally) bundle.get("rallyObject");
+        currShot = (Shot)  bundle.getSerializable("shotObject");
+        currRally = (Rally) bundle.getSerializable("rallyObject");
         if (currShot.isServe()){
             Button serveButton = (Button) findViewById(R.id.volleyShot);
             serveButton.setText("Volley Return");

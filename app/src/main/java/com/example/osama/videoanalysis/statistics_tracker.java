@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import static java.lang.Integer.parseInt;
 
 public class statistics_tracker extends AppCompatActivity {
+    GameData firebaseData;
     Intent intent;
     Button backButton;
     int rallyLength;
@@ -27,10 +29,14 @@ public class statistics_tracker extends AppCompatActivity {
     int totalErrors;
     HashMap<String, Integer> winnerData;
     HashMap<String, Integer> errorData;
+    int volleysHit;
+    int volleyChances;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_tracker);
+
+        firebaseData = new GameData();
 
         //Assign variable references to view
         backButton = (Button) findViewById(R.id.backButton);
@@ -49,6 +55,14 @@ public class statistics_tracker extends AppCompatActivity {
         TextView killPercValue = (TextView) findViewById(R.id.killPercentageValue);
         TextView dropPercValue = (TextView) findViewById(R.id.dropPercentageValue);
 
+        TextView errorBoastPercValue = (TextView) findViewById(R.id.errorBoastPercentageValue);
+        TextView errorStraightPercValue = (TextView) findViewById(R.id.errorStraightPercentageValue);
+        TextView errorLobPercValue = (TextView) findViewById(R.id.errorLobPercentageValue);
+        TextView errorKillPercValue = (TextView) findViewById(R.id.errorKillPercentageValue);
+        TextView errorDropPercValue = (TextView) findViewById(R.id.errorDropPercentageValue);
+        TextView volleysData = (TextView) findViewById(R.id.volleyOppsText);
+
+
         //Recieve all calculations necessary
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("information");
@@ -61,17 +75,43 @@ public class statistics_tracker extends AppCompatActivity {
         currGame = (Game) bundle.getSerializable("gameObject");
         sps = (long) bundle.getSerializable("shotsPerSecond");
         winnerErrorData = (HashMap[]) bundle.getSerializable("winnersErrors");
+        //volleyChances = (int) bundle.getSerializable("volleyChances");
+        //volleysHit = (int) bundle.getSerializable("volleysHit");
+
         winnerData = winnerErrorData[0];
         errorData = winnerErrorData[1];
 
         totalWinners = currGame.getTotalWinners();
         totalErrors = currGame.getTotalErrors();
 
-        boastPercValue.setText(String.valueOf(((double)winnerData.get("boast"))*100/totalWinners)+"%");
-        straightPercValue.setText(String.valueOf(((double)winnerData.get("straight"))*100/totalWinners)+"%");
-        dropPercValue.setText(String.valueOf(((double)winnerData.get("drop"))*100/totalWinners)+"%");
-        killPercValue.setText(String.valueOf(((double)winnerData.get("kill"))*100/totalWinners)+"%");
-        lobPercValue.setText(String.valueOf(((double)winnerData.get("lob"))*100/totalWinners)+"%");
+        if (totalWinners == 0) {
+            boastPercValue.setText("----");
+            straightPercValue.setText("----");
+            dropPercValue.setText("----");
+            killPercValue.setText("----");
+            lobPercValue.setText("----");
+        } else {
+
+            boastPercValue.setText(String.valueOf(Math.round((((double) winnerData.get("boast")) * 100 / totalWinners)) + "%"));
+            straightPercValue.setText(String.valueOf(Math.round((((double) winnerData.get("straight")) * 100 / totalWinners)) + "%"));
+            dropPercValue.setText(String.valueOf(Math.round(((double) winnerData.get("drop")) * 100 / totalWinners)) + "%");
+            killPercValue.setText(String.valueOf(Math.round(((double) winnerData.get("kill")) * 100 / totalWinners)) + "%");
+            lobPercValue.setText(String.valueOf(Math.round(((double) winnerData.get("lob")) * 100 / totalWinners)) + "%");
+        }
+        if (totalErrors == 0) {
+            errorBoastPercValue.setText("----");
+            errorStraightPercValue.setText("----");
+            errorLobPercValue.setText("----");
+            errorKillPercValue.setText("----");
+            errorDropPercValue.setText("----");
+        } else {
+            errorBoastPercValue.setText(String.valueOf(Math.round(((double) errorData.get("boast")) * 100 / totalErrors)) + "%");
+            errorStraightPercValue.setText(String.valueOf(Math.round(((double) errorData.get("straight")) * 100 / totalErrors)) + "%");
+            errorLobPercValue.setText(String.valueOf(Math.round(((double) errorData.get("lob")) * 100 / totalErrors)) + "%");
+            errorKillPercValue.setText(String.valueOf(Math.round(((double) errorData.get("kill")) * 100 / totalErrors)) + "%");
+            errorDropPercValue.setText(String.valueOf(Math.round(((double) errorData.get("drop")) * 100 / totalErrors)) + "%");
+        }
+
 
         //Update view with new values
         shotsPerSecondValue.setText(String.valueOf(sps));
@@ -88,17 +128,41 @@ public class statistics_tracker extends AppCompatActivity {
         frontPercValue.setText(String.valueOf((double)bundle.getSerializable("frontPercentage")) + "%");
         midPercValue.setText(String.valueOf((double)bundle.getSerializable("middlePercentage")) + "%");
         backPercValue.setText(String.valueOf((double)bundle.getSerializable("backPercentage")) + "%");
+        volleysData.setText(currGame.calculateGameVolleys()[1]+"/"+currGame.calculateGameVolleys()[0]);
 
 
 
         //Update the model with the new values to send to firebase
-        currGame.setAverageRallyLength(avgRallyLength);
-        //Issue : All of those are set to 0
-        currGame.setBackShotsPercentage((double)bundle.getSerializable("backPercentage"));
-        currGame.setMiddleShotsPercentage((double)bundle.getSerializable("middlePercentage"));
-        currGame.setBackShotsPercentage((double)bundle.getSerializable("frontPercentage"));
-        currGame.calculateTotalShots();
-        currGame.setTotalRallies(totalRallies);
+        firebaseData.setTotalShots(totalShotsValue.getText().toString());
+        firebaseData.setAverageRallyLength(avgRallyLengthValue.getText().toString());
+        firebaseData.setTotalRallies(totalRalliesValue.getText().toString());
+
+        firebaseData.setPercentageOfBackShots(backPercValue.getText().toString());
+        firebaseData.setPercentageOfMiddleShots(midPercValue.getText().toString());
+        firebaseData.setPercentageOfFrontShots(frontPercValue.getText().toString());
+        firebaseData.setTotalShots(String.valueOf(currGame.calculateTotalShots()));
+
+        firebaseData.setPercentageOfBoastWinners(boastPercValue.getText().toString());
+        firebaseData.setPercentageOfKillWinners(killPercValue.getText().toString());
+        firebaseData.setPercentageOfLobWinners(lobPercValue.getText().toString());
+        firebaseData.setPercentageOfStraightWinners(straightPercValue.getText().toString());
+        firebaseData.setPercentageOfDropWinners(dropPercValue.getText().toString());
+
+        firebaseData.setPercentageOfBoastWinners(boastPercValue.getText().toString());
+        firebaseData.setPercentageOfKillWinners(killPercValue.getText().toString());
+        firebaseData.setPercentageOfLobWinners(lobPercValue.getText().toString());
+        firebaseData.setPercentageOfStraightWinners(straightPercValue.getText().toString());
+        firebaseData.setPercentageOfDropWinners(dropPercValue.getText().toString());
+
+        firebaseData.setPercentageOfBoastErrors(errorBoastPercValue.getText().toString());
+        firebaseData.setPercentageOfKillErrors(errorKillPercValue.getText().toString());
+        firebaseData.setPercentageOfLobErrors(errorLobPercValue.getText().toString());
+        firebaseData.setPercentageOfStraightErrors(errorStraightPercValue.getText().toString());
+        firebaseData.setPercentageOfDropErrors(errorDropPercValue.getText().toString());
+
+        firebaseData.setWinnersToErrors(winnerErrorValue.getText().toString());
+
+
         //currGame.set
 
         /*currMatch.setAverageRallyLength(avgRallyLength);
@@ -113,7 +177,8 @@ public class statistics_tracker extends AppCompatActivity {
     public void returnBack(View view) {
         intent = new Intent(getApplicationContext(), MainActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("gameObject", currGame);
+        bundle.putSerializable("gameObject", (Serializable)currGame);
+        bundle.putSerializable("firebaseObject", (Serializable) firebaseData);
         intent.putExtra("Updated Match", bundle);
         setResult(2, intent);
         finish();

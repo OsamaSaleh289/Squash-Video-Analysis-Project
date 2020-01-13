@@ -525,25 +525,200 @@
 
 
             </TableRow>
-
-           <!-- <TableRow
+            <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
-                <Button
-                    android:id="@+id/backButton"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="fill_parent"
-                    android:layout_height="108dp"
-                    android:layout_marginTop="456dp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:onClick="returnBack"
-                    android:text="Return to Main Screen"
-                    android:textColor="@android:color/background_light"
+
+                <TextView
+                    android:id="@+id/errorDetails"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="Error details"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </TableRow>-->
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/errorKillPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Kill"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/errorKillPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/errorStraightPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Straight"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/errorStraightPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/errorLobPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Lob"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/errorLobPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/errorBoastPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Boast"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/errorBoastPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/errorDropPercentage"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="% Drop"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/errorDropPercentageValue"
+                    android:layout_weight="0"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:padding="20dip"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+
+            <!-- <TableRow
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center_horizontal">
+                 <Button
+                     android:id="@+id/backButton"
+                     style="@style/Widget.AppCompat.Button.Colored"
+                     android:layout_width="fill_parent"
+                     android:layout_height="108dp"
+                     android:layout_marginTop="456dp"
+                     android:backgroundTint="@color/colorPrimary"
+                     android:onClick="returnBack"
+                     android:text="Return to Main Screen"
+                     android:textColor="@android:color/background_light"
+                     android:textSize="18sp"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+             </TableRow>-->
 
 
         </TableLayout>

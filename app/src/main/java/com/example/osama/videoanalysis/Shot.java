@@ -4,12 +4,33 @@ import java.io.Serializable;
 
 public class Shot implements Serializable{
         public String specificID = "";
-        private Boolean volleyOpportunity;
-        private Boolean volley;
+        private Boolean volleyOpportunity = false;
+        private Boolean volley = false;
         public String shotType;
         private Boolean serve = false;
         private String shotArea = "";
         private Rally parentRally;
+
+        public boolean getVolleyOpportunity(){
+            return volleyOpportunity;
+
+        }
+
+        public boolean getVolley(){
+            return volley;
+
+
+        }
+
+        public void setVolleyOpportunity(){
+            volleyOpportunity = true;
+
+        }
+
+        public void setVolley(){
+            volley = true;
+
+        }
 
         public String getSpecificID() {
             return specificID;

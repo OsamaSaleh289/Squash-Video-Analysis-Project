@@ -21,6 +21,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
+    GameData firebaseData;
     DatabaseReference matchReff;
     Button rallyButton;
     long currentValue;
@@ -36,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     long pauseOffset;
     String saveTimeString;
     int gameCount;
+    int volleys = 0;
     int matchCount;
-
+    Button saveButton;
+    Button endButton;
 
     //Load a new activity and send appropriate data
     public void loadActivity(Intent intent, Bundle bundle, int requestCode){
@@ -78,10 +81,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             rallyButton.setText("Rally End");
             //timer.setBase((long)0);
             timer.start();
+            saveButton.setAlpha((float)0.5);
+            endButton.setAlpha((float)0.5);
+            endButton.setClickable(false);
+            saveButton.setClickable(false);
+
 
 
         } else {
             timer.stop();
+            saveButton.setAlpha((float)1);
+            endButton.setAlpha((float)1);
+            endButton.setClickable(true);
+            saveButton.setClickable(true);
             rallyTime = timer.getText().toString();
             Log.i("Timer value", timer.getText().toString());
             rallyButton.setText("Rally Start");
@@ -122,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 shotArea = (TextView) findViewById(R.id.frontRight);
 
             } else if (viewTag.equals("frontLeft")){
-                shotArea = (TextView) findViewById(R.id.frontRight);
+                shotArea = (TextView) findViewById(R.id.frontLeft);
 
             } else if (viewTag.equals("midLeft")){
                 shotArea = (TextView) findViewById(R.id.midLeft);
@@ -136,6 +148,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             } else {
                 shotArea = (TextView) findViewById(R.id.backRight);
             }
+            shotArea.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Log.i("Long click is", "detected");
+                    currShot.setVolleyOpportunity();
+                    onShot(v);
+                    return true;
+                }
+            });
             currShot.shotAreaRecord(area);
             animateBox(shotArea);
 
@@ -154,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
 
 
-    //Handle shots at the front of the court
     public void onShot(View view){
         Intent intent;
         Log.i("this", String.valueOf((SystemClock.elapsedRealtime() - timer.getBase())/4000) + " after /4000");
@@ -179,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 currShot.setServeTrue();
             }
             Bundle bundle = new Bundle();
+            Log.i("currShot", String.valueOf(currShot.equals(null)));
             bundle.putSerializable("shotObject", (Serializable) currShot);
             bundle.putSerializable("rallyObject", (Serializable) currRally);
             loadActivity(intent, bundle, 1);
@@ -279,9 +300,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
     public void onSaveClick(View view){
+        //Make a list of gameData and change this accordingly
         for (Game game : currMatch.games) {
             if (!game.saved) {
-                matchReff.child("Games").push().setValue(game);
+                matchReff.child("Games").push().setValue(firebaseData);
                 game.saved = true;
             }
         }
@@ -297,7 +319,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         matchReff = FirebaseDatabase.getInstance().getReference().child("Match");
-
+        saveButton = (Button) findViewById(R.id.saveToFirebase);
+        endButton = (Button) findViewById(R.id.endGame);
 
 
         timer = (Chronometer)findViewById(R.id.rallyTimer);
@@ -367,7 +390,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
             super.onActivityResult(requestCode, resultCode, intent);
             // Make sure the request was successful
-            if (requestCode == 1) {
+
+            if (resultCode == 4){
+                Toast.makeText(getApplicationContext(), "Shot cancelled", Toast.LENGTH_SHORT).show();
+
+            }else if (requestCode == 1) {
                 Bundle bundle = intent.getBundleExtra("Updated information");
                 currShot = (Shot) bundle.getSerializable("currShot");
                 currRally = (Rally) bundle.getSerializable("currRally");
@@ -375,17 +402,18 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 Toast.makeText(MainActivity.this, String.valueOf(currRally.getRallyLength()), Toast.LENGTH_SHORT).show();
                 resumeTimer();
 
-            } else if (requestCode == 2){
+            } else if (requestCode == 2) {
                 Toast.makeText(MainActivity.this, "New Game", Toast.LENGTH_SHORT).show();
                 Bundle bundle = intent.getBundleExtra("Updated Match");
                 currGame = (Game) bundle.getSerializable("gameObject");
+                firebaseData = (GameData) bundle.getSerializable("firebaseObject");
                 currMatch.addGame(currGame);
                 currGame = new Game();
                 timer.setBase(SystemClock.elapsedRealtime());
                 pauseOffset = 0;
-
-
             }
+
+
 
 
 

@@ -16,6 +16,26 @@ public class Rally implements Serializable {
     private int numWinners = 0;
     private int numErrors = 0;
 
+    public int[] calculateVolleys(){
+        int[] returnList = new int[]{0,0};
+        for (Shot shot: shots){
+            if (shot.getVolleyOpportunity()){
+                returnList[0] += 1;
+
+
+            }
+
+            if (shot.getVolley()){
+                returnList[1] += 1;
+
+            }
+
+        }
+        return returnList;
+
+
+    }
+
     public int shotAreaCount(String areaDesired){
         int count = 0;
 
@@ -67,8 +87,7 @@ public class Rally implements Serializable {
 
     public void addShot(Shot shot){
         shots.add(shot);
-        Log.i("shotType", shot.getShotType());
-
+        Log.i("currShot", String.valueOf(shot.equals(null)));
         if (shot.getShotType().equals("Volley") || shot.getShotType().equals("volley")){
             totalVolleys += 1;
 

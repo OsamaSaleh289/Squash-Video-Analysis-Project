@@ -41,6 +41,19 @@ public class Game implements Serializable {
 
     }
 
+    public int[] calculateGameVolleys(){
+        int[] returnValue = new int[]{0,0};
+        for (Rally rally : rallies){
+            int[] rallyList = rally.calculateVolleys();
+            returnValue[0] += rallyList[0];
+            returnValue[1] += rallyList[1];
+
+        }
+        return returnValue;
+
+
+    }
+
     public int getTotalWinners(){
         int sum = 0;
         for (int winner : winnerData.values()){

@@ -2,6 +2,8 @@ package com.example.osama.videoanalysis;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -30,27 +32,33 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
     public void onTypeSelect(View view){
         confirm = (Button) findViewById(R.id.confirm);
-        confirm.setClickable(true);
-        confirm.setAlpha((float) 1);
+        if (!view.getTag().toString().equals("cancel")) {
+            confirm.setClickable(true);
+            confirm.setAlpha((float) 1);
+        }
 
 
 
 
         if (view.getTag().toString().equals("let/stroke")){
+            //shotType.setBackground(Drawable.createFromPath("@android:color/holo_orange_dark"));
             shotType = (Button) findViewById(R.id.let_stroke);
+            //shotType.setBackground(Drawable.createFromPath("@android:color/pink"));
             currShot.setShotType(shotType.getText().toString());
 
 
 
         } else if (view.getTag().toString().equals("normalShot")){
+            //shotType.setBackground(Drawable.createFromPath("@android:color/holo_orange_dark"));
             shotType = (Button) findViewById(R.id.normalShot);
+            //shotType.setBackground(Drawable.createFromPath("@android:color/pink"));
             currShot.setShotType("Normal Shot");
 
 
         //Cancel Button
         } else if (view.getTag().toString().equals("cancel")) {
             intent = new Intent(getApplicationContext(), MainActivity.class);
-            setResult(RESULT_OK, intent);
+            setResult(4, intent);
             finish();
 
 
