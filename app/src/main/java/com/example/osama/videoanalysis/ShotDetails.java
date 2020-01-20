@@ -41,9 +41,9 @@ public class ShotDetails extends AppCompatActivity implements Serializable{
 
 
         if (view.getTag().toString().equals("let/stroke")){
-            //shotType.setBackground(Drawable.createFromPath("@android:color/holo_orange_dark"));
+            shotType.setBackground(Drawable.createFromPath("@android:color/holo_orange_dark"));
             shotType = (Button) findViewById(R.id.let_stroke);
-            //shotType.setBackground(Drawable.createFromPath("@android:color/pink"));
+            shotType.setBackground(Drawable.createFromPath("@android:color/pink"));
             currShot.setShotType(shotType.getText().toString());
 
 
