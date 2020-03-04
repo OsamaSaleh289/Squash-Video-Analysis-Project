@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
             if (resultCode == 4){
                 Toast.makeText(getApplicationContext(), "Shot cancelled", Toast.LENGTH_SHORT).show();
-
+            //Result code after recording a shot
             }else if (requestCode == 1) {
                 Bundle bundle = intent.getBundleExtra("Updated information");
                 currShot = (Shot) bundle.getSerializable("currShot");
@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 currRally.setServeFalse();
                 Toast.makeText(MainActivity.this, String.valueOf(currRally.getRallyLength()), Toast.LENGTH_SHORT).show();
                 resumeTimer();
-
+            //Result code after displaying the finished game statistics
             } else if (requestCode == 2) {
                 Toast.makeText(MainActivity.this, "New Game", Toast.LENGTH_SHORT).show();
                 Bundle bundle = intent.getBundleExtra("Updated Match");
