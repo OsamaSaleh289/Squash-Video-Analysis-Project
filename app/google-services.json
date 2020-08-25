@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "453698093072",
-    "firebase_url": "https://playerdata-d8779.firebaseio.com",
-    "project_id": "playerdata-d8779",
-    "storage_bucket": "playerdata-d8779.appspot.com"
+    "project_number": "901555609742",
+    "firebase_url": "https://home-connect-b2138.firebaseio.com",
+    "project_id": "home-connect-b2138",
+    "storage_bucket": "home-connect-b2138.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:453698093072:android:a903e4e86aa7c1294c4a95",
+        "mobilesdk_app_id": "1:901555609742:android:81c691143a8fdb3601a9df",
         "android_client_info": {
-          "package_name": "com.example.osama.videoanalysis"
+          "package_name": "com.OsamaSaleh289.home_connect"
         }
       },
       "oauth_client": [
         {
-          "client_id": "453698093072-u0150vbdser3s76d7hn67083hf56kdub.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.osama.videoanalysis",
-            "certificate_hash": "a7508b4c764ab85c232514e6118173054e8465a1"
-          }
-        },
-        {
-          "client_id": "453698093072-sqo84auvtrkaq9qj680o66susdvr0akd.apps.googleusercontent.com",
+          "client_id": "901555609742-8l2fcspm52qf2nj3r06ohpbhjuclcdk2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFeT74ymzWTSy8UoNpBElgnhgywwVyAn8"
+          "current_key": "AIzaSyAcYEVfTla8rA26YIDoK3bI5sPEo_JZrv4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "453698093072-sqo84auvtrkaq9qj680o66susdvr0akd.apps.googleusercontent.com",
+              "client_id": "901555609742-8l2fcspm52qf2nj3r06ohpbhjuclcdk2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

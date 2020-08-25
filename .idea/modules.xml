@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VideoAnalysis.iml" filepath="$PROJECT_DIR$/VideoAnalysis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VideoAnalysis.iml" filepath="$PROJECT_DIR$/VideoAnalysis.iml" group="VideoAnalysis" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="VideoAnalysis/app" />
     </modules>
   </component>
 </project>
