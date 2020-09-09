@@ -32,56 +32,10 @@
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/buttons_section"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/buttons_section"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/frontLeft"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/frontRight"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TableLayout
-                    android:layout_width="118dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/backandfront"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/rallyButton"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:backgroundTint="@android:color/holo_red_dark"
-                        android:onClick="startRally"
-                        android:text="Rally Start"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </TableRow>
-                </TableLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:tag="frontLeft"
+                android:onClick="onShot"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,10 +43,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/buttons_section"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteY="365dp" />
+                app:layout_constraintLeft_toRightOf="@id/frontLeft"
+                android:tag="frontRight"
+                android:onClick="onShot"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -118,7 +73,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/backRight"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:tag="backLeft"
+                    android:onClick="onShot">
 
 
                 </View>
@@ -130,7 +87,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/backLeft"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:tag="backRight"
+                    android:onClick="onShot">
 
 
                 </View>
@@ -155,7 +114,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:tag="midLeft"
+                    android:onClick="onShot"/>
 
                 <View
                     android:id="@+id/midRight"
@@ -165,7 +126,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:tag="midRight"
+                    android:onClick="onShot"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
@@ -215,7 +178,7 @@
             android:onClick="pauseTimerOnClick"
             android:text="Rally Pause"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/saveToFirebase"
+            app:layout_constraintStart_toEndOf="@+id/rallyButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -229,14 +192,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/saveToFirebase"
+            android:id="@+id/rallyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onSaveClick"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Save Match"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:onClick="startRally"
+            android:text="Rally Start"
+            android:textSize="15sp"
+            app:layout_constraintRight_toLeftOf="@id/pauseButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

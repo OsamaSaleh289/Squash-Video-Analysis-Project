@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     DatabaseReference matchReff;
     Button rallyButton;
     long currentValue;
-    TextView shotArea;
+    View shotArea;
     String rallyTime;
     Match currMatch;
     Game currGame;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     int gameCount;
     int volleys = 0;
     int matchCount;
-    Button saveButton;
+    //Button saveButton;
     Button endButton;
 
     //Load a new activity and send appropriate data
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     }
 
-    public void animateBox(final TextView shotArea){
+    public void animateBox(final View shotArea){
         final Drawable saveColour = shotArea.getBackground();
 
 
@@ -81,19 +81,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             rallyButton.setText("Rally End");
             //timer.setBase((long)0);
             timer.start();
-            saveButton.setAlpha((float)0.5);
+            //saveButton.setAlpha((float)0.5);
             endButton.setAlpha((float)0.5);
             endButton.setClickable(false);
-            saveButton.setClickable(false);
+            //saveButton.setClickable(false);
 
 
 
         } else {
             timer.stop();
-            saveButton.setAlpha((float)1);
+            //saveButton.setAlpha((float)1);
             endButton.setAlpha((float)1);
             endButton.setClickable(true);
-            saveButton.setClickable(true);
+            //saveButton.setClickable(true);
             rallyTime = timer.getText().toString();
             Log.i("Timer value", timer.getText().toString());
             rallyButton.setText("Rally Start");
@@ -131,22 +131,22 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
             //Color indicator on the view clicked by user
             if (viewTag.equals("frontRight")) {
-                shotArea = (TextView) findViewById(R.id.frontRight);
+                shotArea = (View) findViewById(R.id.frontRight);
 
             } else if (viewTag.equals("frontLeft")){
-                shotArea = (TextView) findViewById(R.id.frontLeft);
+                shotArea = (View) findViewById(R.id.frontLeft);
 
             } else if (viewTag.equals("midLeft")){
-                shotArea = (TextView) findViewById(R.id.midLeft);
+                shotArea = (View) findViewById(R.id.midLeft);
 
             } else if (viewTag.equals("midRight")){
-                shotArea = (TextView) findViewById(R.id.midRight);
+                shotArea = (View) findViewById(R.id.midRight);
 
             } else if (viewTag.equals("backLeft")){
-                shotArea = (TextView) findViewById(R.id.backLeft);
+                shotArea = (View) findViewById(R.id.backLeft);
 
             } else {
-                shotArea = (TextView) findViewById(R.id.backRight);
+                shotArea = (View) findViewById(R.id.backRight);
             }
             shotArea.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -178,10 +178,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void onShot(View view){
         Intent intent;
         Log.i("this", String.valueOf((SystemClock.elapsedRealtime() - timer.getBase())/4000) + " after /4000");
+        Log.i("Shot Detected", "");
         if (currRally != null && rallyButton.getText().toString().equals("Rally End")) {
             //We want to not record our shot instantly after creating it but instead create the shot in one of the other
             //activities depending on if its a winner, an error, or neither. We will then have an array of shots that are
             //polymorphic
+            Log.i("Shot Area", view.getTag().toString());
             if (view.getTag().toString().equals("frontLeft") || view.getTag().toString().equals("frontRight")) {
                 recordShot(view, "front");
                 intent = new Intent(getApplicationContext(), ShotDetails.class);
@@ -299,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     }
 
-    public void onSaveClick(View view){
+    /*public void onSaveClick(View view){
         //Make a list of gameData and change this accordingly
         for (Game game : currMatch.games) {
             if (!game.saved) {
@@ -307,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 game.saved = true;
             }
         }
-    }
+    }*/
 
 
 
@@ -317,9 +319,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        matchReff = FirebaseDatabase.getInstance().getReference().child("Match");
-        saveButton = (Button) findViewById(R.id.saveToFirebase);
+        setContentView(R.layout.layout_court);
+        //matchReff = FirebaseDatabase.getInstance().getReference().child("Match");
+        //saveButton = (Button) findViewById(R.id.saveToFirebase);
         endButton = (Button) findViewById(R.id.endGame);
 
 
@@ -370,11 +372,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
 
         rallyButton = (Button) findViewById(R.id.rallyButton);
-        TextView courtLine = (TextView) findViewById(R.id.courtLine);
-        TextView mLeft = (TextView) findViewById(R.id.midLeft);
-        TextView mRight = (TextView) findViewById(R.id.midRight);
+        View courtLine = (View) findViewById(R.id.courtLine);
+        View mLeft = (View) findViewById(R.id.midLeft);
+        View mRight = (View) findViewById(R.id.midRight);
         pauseButton = (Button) findViewById(R.id.pauseButton);
-        courtLine.bringToFront();
+        //courtLine.bringToFront();
         mLeft.bringToFront();
         mRight.bringToFront();
 
